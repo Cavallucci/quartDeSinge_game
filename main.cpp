@@ -1,12 +1,15 @@
 #include "quart_de_singe.hpp"
 
+bool	parsingArgs()
+
 int main(int argc, const char* argv[]) {
 	// parametre sur la ligne de commande
-	if (argc >= 2)
-		std::cout << "le 1er parametre est '" << argv[1] << "'" << std::endl;
-	else
-		std::cout << "il n'y a pas de parametre" << std::endl;
+	if (argc == 2 && parsingArgs(argv))
+	{
 
+	}
+	else
+		std::cout << "Error Arguments" << std::endl;
 	// lecture du dictionnaire mot à mot
 	std::ifstream in("ods4.txt"); // on ouvre le fichier
 	if (!in) {

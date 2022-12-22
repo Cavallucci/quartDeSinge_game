@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream> 
 
 #include "ConteneurTS.h"
 #include "ConteneurTD.h"
@@ -8,31 +9,38 @@
 #include "Liste.h"
 
 /** 
-* @brief Un programme illustrant les différents conteneurs et structures 
-* de données classiques vus en cours, td et tp de SDA.
-* Chaque structure a été développée suite à des choix d'implémentation. Ces 
-* choix sont souvent arbitraires et conduisent parfois à des limitations. Par exemple,
-* les piles et les files ont une capacité maximale stricte décidée lors de l'initialisation.
-* Ces choix d'implémentation peuvent être remis en question selon les besoins des utilisateurs.
-* Certaines implémentations (File et Liste par exemple) reposent sur d'autres 
+* @brief Un programme illustrant les diffï¿½rents conteneurs et structures 
+* de donnï¿½es classiques vus en cours, td et tp de SDA.
+* Chaque structure a ï¿½tï¿½ dï¿½veloppï¿½e suite ï¿½ des choix d'implï¿½mentation. Ces 
+* choix sont souvent arbitraires et conduisent parfois ï¿½ des limitations. Par exemple,
+* les piles et les files ont une capacitï¿½ maximale stricte dï¿½cidï¿½e lors de l'initialisation.
+* Ces choix d'implï¿½mentation peuvent ï¿½tre remis en question selon les besoins des utilisateurs.
+* Certaines implï¿½mentations (File et Liste par exemple) reposent sur d'autres 
 * conteneurs (ConteneurTD et ConteneurTDE).
 */
 int main() {
+std::cout << "====== TS ======" << std::endl;
 	ConteneurTS ts;
 	initialiser(ts);
 	for (int i = 0; i < 3; ++i)
 		ecrire(ts, i, i);
 	for (int i = 0; i < 3; ++i)
 		assert(lire(ts, i) == i);
+for (int i = 0; i < ts.nbItems; ++i)
+	std::cout << "tab = " << ts.tab[i] << std::endl;
 	/////////////////////////////////////
+std::cout << "====== TDE ======" << std::endl;
 	ConteneurTDE tde;
 	initialiser(tde, 2, 2);
 	for (int i = 0; i < 3; ++i)
 		ecrire(tde, i, i);
 	for (int i = 0; i < 3; ++i)
 		assert(lire(tde, i) == i);
+for (int i = 0; i < tde.capacite; ++i)
+	std::cout << "tab = " << tde.tab[i] << std::endl;
 	detruire(tde);
-	/////////////////////////////////////
+	// /////////////////////////////////////
+std::cout << "====== PILE ======" << std::endl;
 	Pile p;
 	initialiser(p, 10);
 	assert(estVide(p));
@@ -47,8 +55,14 @@ int main() {
 	assert(sommet(p) == 7);
 	depiler(p);
 	assert(estVide(p));
+for (int i = 0; i < p.capacite; ++i)
+{
+	std::cout << "tab = " << p.tab[i] << std::endl;
+	std::cout << "sommet = " << p.sommet << std::endl;
+}
 	detruire(p);
-	/////////////////////////////////////
+	// /////////////////////////////////////
+std::cout << "====== FILE ======" << std::endl;
 	File f;
 	initialiser(f, 3);
 	assert(estVide(f));
@@ -62,6 +76,11 @@ int main() {
 	assert(!estPleine(f));
 	assert(tete(f) == 1);
 	entrer(f, 3);
+for (int i = 0; i < f.nb; ++i)
+{
+	std::cout << "indPremier = " << f.indPremier << std::endl;
+	std::cout << "indProchain = " << f.indProchain << std::endl;
+}
 	assert(!estVide(f));
 	assert(estPleine(f));
 	assert(tete(f) == 1);
@@ -80,8 +99,14 @@ int main() {
 	assert(tete(f) == 4);
 	sortir(f);
 	assert(estVide(f));
+for (int i = 0; i < f.nb; ++i)
+{
+	std::cout << "indPremier = " << f.indPremier << std::endl;
+	std::cout << "indProchain = " << f.indProchain << std::endl;
+}
 	detruire(f);
-	/////////////////////////////////////
+	// /////////////////////////////////////
+std::cout << "====== LISTE ======" << std::endl;
 	Liste li;
 	initialiser(li, 2, 2);
 	for (int i = 0; i < 3; ++i)
@@ -97,5 +122,9 @@ int main() {
 	assert(longueur(li) == 3);
 	for (int i = 0; i < 3; ++i)
 		assert(lire(li, i) == i);
+for (int i = 0; i < li.nb; ++i)
+{
+	std::cout << "c.tab = " << li.c.tab[i] << std::endl;
+}
 	detruire(li);
 }
