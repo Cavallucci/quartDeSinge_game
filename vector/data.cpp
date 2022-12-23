@@ -25,7 +25,7 @@ void	initData(struct Data *d, const char *arg)
     {
         std::cout << "initdata\n";
         struct Players  p;
-        d->_players.insert(p, i);
+        d->_players.insert(i, p);
         //initPlayer(d->_players[i], arg[i], i);
     }
 }

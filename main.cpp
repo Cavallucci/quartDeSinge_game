@@ -1,38 +1,28 @@
-#include "quart_de_singe.h"
+#include "singe.h"
 
 int main(int argc, const char* argv[]) 
 {
-	Data	d;
+	Singe		data;
+	bool		playing = true;
+	const int	MAX = 26;
+	char		s[MAX];
 	
-	if (argc == 2 && parsingArgs(argv[1], &d) == true)
+	if (argc == 2 && parsingArgs(argv[1], &data) == true)
 	{
-		initData(&d, argv[1]);
-		std::cout << "segflt" << std::endl;
-		std::cout << d._nbplayers << std::endl;
-		// for (int i = 0; i < d._nbplayers; i++)
-		// {
-		// 	std::cout << d._players[i]._index << std::endl;
-		// }
-		
-		
-		// lecture du dictionnaire mot à mot
-		std::ifstream in("ods4.txt"); // on ouvre le fichier
+		initSinge(&data, argv[1]);
+		std::ifstream in("ods4.txt");
 		if (!in) {
 			std::cout << "le dictionnaire n'a pu etre ouvert" << std::endl;
 			return 2;
 		}
-
-		int nb = 0, longueur = 0;
-		const int MAX = 26;
-		char s[MAX];
-		in >> std::setw(MAX) >> s; // on essaye de lire le premier mot
-		while (in) {
-			++nb; // ça s'est bien passé, on le compte
-			longueur += strlen(s); // et on accumule sa longueur
-			in >> std::setw(MAX) >> s; // on essaye de lire le mot suivant
+		in >> std::setw(MAX) >> s;
+		while (playing && in)
+		{
+			playing = checkScores(data._players);
 		}
+
 		in.close(); // on ferme le fichier
-		std::cout << nb << " mots de " << (float)longueur / nb << " car. en moyenne" << std::endl;
+		detruire(data._players);
 	}
 	else
 		std::cout << "Error Arguments" << std::endl;
