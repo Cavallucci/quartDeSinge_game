@@ -12,10 +12,11 @@ struct Singe
 {
     ConteneurTDE    _players;
     unsigned int    _nbplayers;
+    char            *_word;
 };
 
-void            initSinge(struct Singe *data, const char *arg);
-bool	        parsingArgs(const char* argv, struct Singe *data);
-bool            checkScores(ConteneurTDE players);
+void    initSinge(struct Singe *data, const char *arg);
+bool	parsingArgs(const char* argv, struct Singe *data);
+bool    checkScores(ConteneurTDE players);
 
 #endif

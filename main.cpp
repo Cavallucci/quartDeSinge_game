@@ -1,4 +1,5 @@
 #include "singe.h"
+#include "players.h"
 
 int main(int argc, const char* argv[]) 
 {
@@ -6,7 +7,6 @@ int main(int argc, const char* argv[])
 	bool		playing = true;
 	const int	MAX = 26;
 	char		s[MAX];
-	char		*commande;
 	
 	if (argc == 2 && parsingArgs(argv[1], &data) == true)
 	{
@@ -17,9 +17,15 @@ int main(int argc, const char* argv[])
 			return 2;
 		}
 		in >> std::setw(MAX) >> s;
-		while (playing && in)
+		for (unsigned int i = 0; playing && in; i++)
 		{
-			std::getline(std::cin, &commande);
+			printHeader(lire(data._players, i), data._word);
+			if (lire(data._players, i).nature == 'R')
+				std::cout << 'r' << std::endl;
+			else
+				humanHandle(lire(data._players, i), data._word);
+			if (i == data._nbplayers)
+				i = 0;
 			playing = checkScores(data._players);
 		}
 

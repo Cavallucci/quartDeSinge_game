@@ -19,14 +19,16 @@ bool	parsingArgs(const char* argv, struct Singe *data)
 	return true;
 }
 
-void	initSinge(struct Singe *data, const char *arg)
+void	initSinge(Singe *data, const char *arg)
 {
+    data->_word = NULL;
 	initialiser(data->_players, data->_nbplayers, data->_nbplayers);
     for (unsigned int i = 0; i != data->_nbplayers; i++)
     {
         struct Players  p;
         p.nature = arg[i];
         p.score = 0;
+        p.index = i + 1;
         ecrire(data->_players, i, p);
     }
 }
@@ -41,5 +43,5 @@ bool    checkScores(ConteneurTDE players)
             std::cout << "le joueur de nature " << lire(players, i).nature;
             std::cout << " a un score de : " << lire(players, i).score << std::endl;}
     }
-    return false;
+    return true;
 }
