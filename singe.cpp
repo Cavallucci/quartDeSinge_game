@@ -22,15 +22,24 @@ bool	parsingArgs(const char* argv, struct Singe *data)
 void	initSinge(struct Singe *data, const char *arg)
 {
 	initialiser(data->_players, data->_nbplayers, data->_nbplayers);
-    for (int i = 0; i != data->_nbplayers; i++)
+    for (unsigned int i = 0; i != data->_nbplayers; i++)
     {
-        ecrire(data->_players, i, arg[i]);
+        struct Players  p;
+        p.nature = arg[i];
+        p.score = 0;
+        ecrire(data->_players, i, p);
     }
 }
 
 bool    checkScores(ConteneurTDE players)
 {
-    for (int i = 0; i < players.capacite; i++)
-        std::cout << std::endl;
+    for (unsigned int i = 0; i < players.capacite; i++)
+    {
+        if (lire(players, i).score == 1)
+            return false;
+        else {
+            std::cout << "le joueur de nature " << lire(players, i).nature;
+            std::cout << " a un score de : " << lire(players, i).score << std::endl;}
+    }
     return false;
 }

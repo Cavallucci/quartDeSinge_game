@@ -13,8 +13,7 @@ void initialiser(ConteneurTDE& c, unsigned int capa, unsigned int p) {
 	assert((capa > 0) && (p > 0));
 	c.capacite = capa;
 	c.pasExtension = p;
-	c.tab = new Item[capa]; 
-	c.score = 0; 
+	c.tab = new Item[capa];  
 }
 
 void detruire(ConteneurTDE& c) {

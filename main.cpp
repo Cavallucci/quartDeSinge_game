@@ -6,6 +6,7 @@ int main(int argc, const char* argv[])
 	bool		playing = true;
 	const int	MAX = 26;
 	char		s[MAX];
+	char		*commande;
 	
 	if (argc == 2 && parsingArgs(argv[1], &data) == true)
 	{
@@ -18,6 +19,7 @@ int main(int argc, const char* argv[])
 		in >> std::setw(MAX) >> s;
 		while (playing && in)
 		{
+			std::getline(std::cin, &commande);
 			playing = checkScores(data._players);
 		}
 
@@ -27,4 +29,4 @@ int main(int argc, const char* argv[])
 	else
 		std::cout << "Error Arguments" << std::endl;
 	return 0;
-}
+}	

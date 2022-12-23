@@ -5,8 +5,7 @@ struct ConteneurTDE
 {
     unsigned int	capacite; 	   
 	unsigned int	pasExtension; 
-	Item*			tab; //
-	float			score;	   
+	Item*			tab; //ici sa nature H ou R
 };
 
 void initialiser(ConteneurTDE& c, unsigned int capa, unsigned int p);
