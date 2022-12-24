@@ -54,3 +54,19 @@ bool    gameHandler(Singe *data, int i)
         humanHandle(data, i);
     return (checkScores(p));
 }
+
+void    humanHandle(Singe *data, int i)
+{
+    Players  tmp;
+    tmp = lire(data->_players, i);
+    tmp.score = 1;
+    ecrire(data->_players, i, tmp);
+}
+
+void    robotHandle(Singe *data, int i)
+{
+    Players  tmp;
+    tmp = lire(data->_players, i);
+    tmp.score = 1;
+    ecrire(data->_players, i, tmp);
+}

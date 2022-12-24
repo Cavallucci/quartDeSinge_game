@@ -1,8 +1,5 @@
 #pragma once
 # include "Item.h"
-# include "singe.h"
-# include "players.h"
-
 
 struct ConteneurTDE 
 {
