@@ -15,9 +15,11 @@ int main(int argc, const char* argv[])
 		}
 		for (unsigned int i = 0; playing; i++)
 		{
+			std::cout << "i = " << i << std::endl;
+			std::cout << "lire = " << lire(data._players, i).index << std::endl;
 			playing = gameHandler(&data, i);
-			if (i == data._nbplayers)
-				i = 0;
+			if (i == data._nbplayers - 1)
+				i = -1;
 		}
 		in.close(); // on ferme le fichier
 		detruire(data._players);
