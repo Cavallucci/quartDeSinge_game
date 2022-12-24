@@ -1,7 +1,11 @@
 #ifndef PLAYERS_H
 #define PLAYERS_H
 
-# include <iostream>
+# include "singe.h"
+# include "ConteneurTDE.h"
+
+struct Singe;
+struct ConteneurTDE;
 
 struct Players
 {
@@ -11,6 +15,8 @@ struct Players
 };
 
 void    printHeader(Players p, char *word);
-void    humanHandle(Players p, char *word);
+void    humanHandle(Singe *data, int i);
+void    robotHandle(Singe *data, int i);
+bool    checkScores(Players p);
 
 #endif

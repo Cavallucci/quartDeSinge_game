@@ -21,8 +21,7 @@ bool	parsingArgs(const char* argv, struct Singe *data)
 
 void	initSinge(Singe *data, const char *arg)
 {
-    data->_word = NULL;
-	initialiser(data->_players, data->_nbplayers, data->_nbplayers);
+	initialiser(data->_players, data->_nbplayers + 1, data->_nbplayers + 1);
     for (unsigned int i = 0; i != data->_nbplayers; i++)
     {
         struct Players  p;
@@ -33,15 +32,25 @@ void	initSinge(Singe *data, const char *arg)
     }
 }
 
-bool    checkScores(ConteneurTDE players)
+bool    wordIsInFile(Singe *data, std::ifstream in)
 {
-    for (unsigned int i = 0; i < players.capacite; i++)
+    char    tmp[data->MAX];
+    while (in)
     {
-        if (lire(players, i).score == 1)
-            return false;
-        else {
-            std::cout << "le joueur de nature " << lire(players, i).nature;
-            std::cout << " a un score de : " << lire(players, i).score << std::endl;}
+        in >> std::setw(data->MAX) >> tmp;
+        if (tmp == data->_word)
+            return true;
     }
-    return true;
+    return false;
+}
+
+bool    gameHandler(Singe *data, int i)
+{
+    Players p = lire(data->_players, i);
+    printHeader(p, data->_word);
+    if (p.nature == 'R')
+        robotHandle(data, i);
+    else
+        humanHandle(data, i);
+    return (checkScores(p));
 }

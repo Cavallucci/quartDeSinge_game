@@ -9,8 +9,25 @@ void    printHeader(Players p, char *word)
     std::cout << ") >";
 }
 
-void    humanHandle(Players p, char *word)
+void    humanHandle(Singe *data, int i)
 {
-    std::getline(std::cin, word);
-    p.score = 1;
+    Players  tmp;
+    tmp = lire(data->_players, i);
+    tmp.score = 1;
+    ecrire(data->_players, i, tmp);
+}
+
+void    robotHandle(Singe *data, int i)
+{
+    Players  tmp;
+    tmp = lire(data->_players, i);
+    tmp.score = 1;
+    ecrire(data->_players, i, tmp);
+}
+
+bool    checkScores(Players p)
+{
+    if (p.score == 1)
+        return false;
+    return true;
 }
