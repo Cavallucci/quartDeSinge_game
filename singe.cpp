@@ -22,6 +22,7 @@ bool	parsingArgs(const char* argv, struct Singe *data)
 void	initSinge(Singe *data, const char *arg)
 {
 	initialiser(data->_players, data->_nbplayers + 1, data->_nbplayers + 1);
+    data.in("ods4.txt");
     for (unsigned int i = 0; i != data->_nbplayers; i++)
     {
         struct Players  p;
@@ -57,16 +58,44 @@ bool    gameHandler(Singe *data, int i)
 
 void    humanHandle(Singe *data, int i)
 {
-    Players  tmp;
-    tmp = lire(data->_players, i);
-    tmp.score = 1;
-    ecrire(data->_players, i, tmp);
+    char s;
+    std::cin >> std::setw(1) >> s;
+    //if s is ! alors abandonner le mot
+    //et mettre word a null
+
+    //if s is ? alors demander a player -i
+    //si il a le mot, -0,25 pour nous 
+    //sinon pour lui
+    //et mettre word a null
+    addToWord(data, s);
+
+    //check si word existe, si c'est le cas
+    //le joueur perd cette manche
+    //et mettre word a null
+    addToScore(data, i);
 }
 
 void    robotHandle(Singe *data, int i)
 {
+    addToScore(data, i);
+}
+
+void    addToScore(Singe *data, int i)
+{
     Players  tmp;
     tmp = lire(data->_players, i);
-    tmp.score = 1;
+    tmp.score += 0.25;
     ecrire(data->_players, i, tmp);
+}
+
+void    addToWord(Singe *data, char s)
+{
+    int j = 0;
+
+    if (data->_word)
+    {
+        while (data->_word[j])
+            j++;
+    }
+    data->_word[j] = s;
 }
