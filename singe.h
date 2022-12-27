@@ -15,17 +15,20 @@ struct Singe
     unsigned int        _nbplayers;
     static const int    MAX = 26;
     char                _word[MAX];
-    std::ifstream       in;
 };
 
 void    initSinge(struct Singe *data, const char *arg);
 bool	parsingArgs(const char* argv, struct Singe *data);
-bool    wordIsInFile(char *word, std::ifstream in);
-bool    gameHandler(struct Singe *data, int i);
-void    humanHandle(Singe *data, int i);
+bool    wordIsInFile(Singe *data);
+int     gameHandler(struct Singe *data, int i);
+int     humanHandle(Singe *data, int i);
 void    robotHandle(Singe *data, int i);
 void    addToScore(Singe *data, int i);
 void    addToWord(Singe *data, char s);
+void    printScores(ConteneurTDE p, unsigned int i);
+int     giveUp(Singe *data, int i);
+int     askPrevious(Singe *data, int i);
+void    alreadyExist(Singe *data, int i);
 
 
 #endif

@@ -6,7 +6,7 @@ void    printHeader(Players p, char *word)
     if (word)
         for (int i = 0; word[i]; i++)
             std::cout << word[i];
-    std::cout << ") >";
+    std::cout << ") > ";
 }
 
 bool    checkScores(Players p)
